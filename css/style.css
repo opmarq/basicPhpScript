@@ -1,0 +1,86 @@
+body{
+    background-color: #FAFAFA !important;
+}
+
+h4{
+    margin: 0px;
+}
+.navbar-brand{
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 25px;
+    color: #C9302C;
+}
+.list-group-title{
+    background-color: #F8F8F8;
+}
+
+.profile-section{
+    border: 1px solid #efefef;
+    background-color: #fff;
+    border-radius: 4px;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 8px;
+    text-align: center;
+    padding: 10px;
+}
+.profile-section img{
+    width: 100px;
+    border-radius: 5px;
+    margin: 10px;
+}
+.question-section,.answer-section,.question-post{
+    border: 1px solid #efefef;
+    background-color: #fff;
+    border-radius: 4px;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 8px;
+    padding: 15px;
+}
+.question-post{
+    padding:0;
+}
+
+.question-action{
+    background-color: #E7E7E7;
+    padding: 8px;
+    text-align: right;
+}
+
+textarea{
+    width: 98% !important;
+    height: 50px !important;
+    padding: 10px;
+    color: #555555;
+    font-size: 15px;
+    font-weight: bolder;
+    outline: none;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.question-info{
+    margin-top: 10px;
+    display: block;
+    color: #999;
+    font-size: 13px;
+}
+
+
+.profile-img{
+    width: 40px;
+    border-radius: 50%;
+    margin: 5px;
+}
+.author-name{
+    font-size: 16px;
+}
+h4 a{
+    text-decoration: none;
+    color: #555;
+}
+
+h4 a:hover{
+    text-decoration: none;
+}
