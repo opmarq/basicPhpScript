@@ -18,23 +18,23 @@ function insertQuery($query,$connection){
 function checkAuth($username,$password,$connection)
 {
     
-    $sql = "SELECT login FROM author where password = ". $password;  
+    $sql = "SELECT count(*) as count FROM author WHERE login = '".$username."' AND password = '". $password."'";  
     
-    $result = mysqli_query($connection, $sql);
+    $result = mysqli_query($connection,$sql);
 
     if (mysqli_num_rows($result) > 0) {
     // output data of each row
-    while($row = mysqli_fetch_object($result)) {
+        while($row = mysqli_fetch_object($result)) {
 
-        echo "id: " . $row->id. " - Name: " . $row->fullname."<br>";
-    }
-    } else {
-        echo "0 results";
+            if($row->count > 0)
+            {
+                return true;
+            }
+        }
     }
 
+    return false;
 }
-
-checkAuth("omar","chajia");
 
 // here goes database queries
 

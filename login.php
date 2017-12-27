@@ -1,6 +1,26 @@
+<?php 
+    require_once("config/dbqueries.php");
+
+    $auth_error = false;
+
+    if(isset($_POST["username"]) && isset($_POST['password']))
+    {
+        $username = $_POST['username'];
+        $password = $_POST["password"];
+    
+        if(checkAuth($username,$password,$conn))
+        {
+            header('location: http://localhost/phpscript/');
+        }else{
+        
+            $auth_error = true;
+            
+        }
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,19 +40,19 @@
                 <div class="col-xs-12">
                     <div class="form-wrap">
                         <h1 class="logo">QAnswer</h1>
-                        
+                            <?php if($auth_error): ?>
                             <div class="alert alert-warning">
                                 Vos informations sont incorrect!
                             </div>
-
-                        <form role="form" action="" method="post" id="login-form" autocomplete="off">
+                            <?php endif ?>
+                        <form role="form" action="login.php" method="post" id="login-form" autocomplete="off">
                             <div class="form-group">
-                                <label for="email" class="sr-only">Email</label>
-                                <input type="email" required  name="email" id="email" class="form-control" placeholder="somebody@example.com">
+                                <label for="username" class="sr-only">Username</label>
+                                <input type="text" required  name="username" id="username" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="key" class="sr-only">Password</label>
-                                <input type="password" required name="key" id="key" class="form-control" placeholder="Password">
+                                <input type="password" required name="password" id="password" class="form-control" placeholder="">
                             </div>
                             <input type="submit" id="btn-login" name="login" class="btn btn-custom btn-lg btn-block" value="Log in">
                         </form>
