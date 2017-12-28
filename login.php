@@ -1,4 +1,6 @@
 <?php 
+
+    require_once("config/init.php");
     require_once("config/dbqueries.php");
 
     $auth_error = false;
@@ -7,13 +9,20 @@
     {
         $username = $_POST['username'];
         $password = $_POST["password"];
-    
-        if(checkAuth($username,$password,$conn))
+        
+        $userCheck = checkAuth($username,$password,$conn);
+
+        if($userCheck)
         {
+
+            $_SESSION['user'] = $userCheck;
+
             header('location: http://localhost/phpscript/');
         }else{
         
-            $auth_error = true;
+            $_SESSION['error'] = true;
+
+            header('location: http://localhost/phpscript/login.php');
             
         }
     }
@@ -40,11 +49,11 @@
                 <div class="col-xs-12">
                     <div class="form-wrap">
                         <h1 class="logo">QAnswer</h1>
-                            <?php if($auth_error): ?>
+                            <?php if(isset($_SESSION['error'])): ?>
                             <div class="alert alert-warning">
                                 Vos informations sont incorrect!
                             </div>
-                            <?php endif ?>
+                            <?php endif; ?>
                         <form role="form" action="login.php" method="post" id="login-form" autocomplete="off">
                             <div class="form-group">
                                 <label for="username" class="sr-only">Username</label>

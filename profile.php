@@ -1,3 +1,14 @@
+<?php
+   
+    require_once("config/init.php");
+    require_once("config/dbqueries.php");
+
+    if(!isset($_SESSION['user']))
+    {
+        header('location: http://localhost/phpscript/login.php');
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -18,7 +18,7 @@ function insertQuery($query,$connection){
 function checkAuth($username,$password,$connection)
 {
     
-    $sql = "SELECT count(*) as count FROM author WHERE login = '".$username."' AND password = '". $password."'";  
+    $sql = "SELECT * FROM author WHERE login = '".$username."' AND password = '". $password."'";  
     
     $result = mysqli_query($connection,$sql);
 
@@ -26,14 +26,11 @@ function checkAuth($username,$password,$connection)
     // output data of each row
         while($row = mysqli_fetch_object($result)) {
 
-            if($row->count > 0)
-            {
-                return true;
-            }
+            return $row;
         }
     }
 
-    return false;
+    return null;
 }
 
 // here goes database queries
