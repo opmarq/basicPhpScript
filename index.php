@@ -14,7 +14,7 @@
         $category = $_POST['category'];
         $user_id = $_SESSION['user']->id;
 
-       if(addQuestion($question,$category,$user_id,$conn))
+       if(addQuestion($question,$user_id,$category,$conn))
        {
         header('location: http://localhost/phpscript');
        }
@@ -73,7 +73,7 @@
                 </form>
                 <?php foreach (selectAllQuestions($conn) as $value):?>
                     <div class="question-section">
-                        <h4> <a href="single.php"> <?= $value->question ?> </a></h4>
+                        <h4> <a href="single.php?id=<?= $value->id ?>"> <?= $value->question ?>? </a></h4>
                         <span class="question-info" >Question added by <a href="#" ><?= $value->username ?></a> in <a href="#" > <?= $value->category ?> </a></span>
                     </div> 
                 <?php endforeach; ?>
