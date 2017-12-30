@@ -9,7 +9,7 @@ function insertQuery($query,$connection){
         return true;
 
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: ";
         return false;
     }
 
@@ -31,6 +31,13 @@ function checkAuth($username,$password,$connection)
     }
 
     return null;
+}
+
+function registreUser($fullName,$username,$password,$connection)
+{
+    $query = "INSERT INTO author(fullname,login,password) VALUES('".$fullName."','".$username."','".$password."')";
+
+    return insertQuery($query,$connection);
 }
 
 // select all categories
@@ -57,7 +64,7 @@ function getAllQuestionsOfCategory($connection,$id_category)
     
     $sql = "SELECT question.id,content,fullname
     FROM category,question,author
-    WHERE category.id = question.id_category and question.id_author = author.id and category.id = $id_category"
+    WHERE category.id = question.id_category and question.id_author = author.id and category.id = $id_category";
     
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -76,7 +83,7 @@ function getAllQuestions($connection)
     
     $sql = "SELECT question.id,question.content,fullname,category.name 
     FROM category,question,author 
-    WHERE category.id = question.id_category and question.id_author = author.id"
+    WHERE category.id = question.id_category and question.id_author = author.id";
     
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) > 0) {
@@ -95,7 +102,7 @@ function getAllAnswersOfQuestion($connection,$id_question)
     
     $sql = "SELECT answer.content,fullname
     FROM answer,question,author
-    WHERE question.id = answer.id_question and answer.id_author = author.id"
+    WHERE question.id = answer.id_question and answer.id_author = author.id";
     
     $result = mysqli_query($connection, $sql);
     if (mysqli_num_rows($result) > 0) {

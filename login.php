@@ -49,8 +49,8 @@
                 <div class="col-xs-12">
                     <div class="form-wrap">
                         <h1 class="logo">QAnswer</h1>
-                            <?php if(isset($_SESSION['error'])): ?>
-                            <div class="alert alert-warning">
+                            <?php if(isset($_SESSION['error']) && $_SESSION['error'] == true ): ?>
+                            <div class="alert alert-warning"> 
                                 Vos informations sont incorrect!
                             </div>
                             <?php endif; ?>

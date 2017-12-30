@@ -1,3 +1,29 @@
+<?php
+
+    require_once("config/init.php");
+    require_once("config/connect.php");
+    require_once("config/dbqueries.php");
+
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        $fullName = $_POST['fullname'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        if(registreUser($fullName,$username,$password,$conn))
+        {
+            $userCheck = checkAuth($username,$password,$conn);
+                  
+            $_SESSION['user'] = $userCheck;
+
+            header('location: http://localhost/phpscript/');
+        }
+
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +46,6 @@
                 <div class="col-xs-12">
                     <div class="form-wrap">
                         <h1 class="logo">QAnswer</h1>
-                            <div class="alert alert-warning">
-                                Les informations sont incorrect!
-                            </div>
                         <form role="form" action="signup.php" method="post" id="login-form" autocomplete="off">
                             <div class="form-group">
                                 <label for="full-name" class="sr-only">FUll Name</label>
@@ -30,12 +53,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email" class="sr-only">Email</label>
-                                <input type="email" required  name="email" id="email" class="form-control" placeholder="somebody@example.com">
+                                <label for="username" class="sr-only">Username</label>
+                                <input type="text" required  name="username" id="username" class="form-control" placeholder="Username">
                             </div>
                             <div class="form-group">
                                 <label for="key" class="sr-only">Password</label>
-                                <input type="password" required name="key" id="key" class="form-control" placeholder="Password">
+                                <input type="password" required name="password" id="key" class="form-control" placeholder="Password">
                             </div>
                             <input type="submit" id="btn-login" name="signup" class="btn btn-custom btn-lg btn-block" value="Signup">
                         </form>
