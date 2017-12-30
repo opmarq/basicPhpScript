@@ -85,3 +85,9 @@ h4 a{
 h4 a:hover{
     text-decoration: none;
 }
+
+/* admin styling*/
+
+.btn-logout{
+    margin-top: 10%;
+}

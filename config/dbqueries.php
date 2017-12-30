@@ -2,7 +2,7 @@
 
 require_once("connect.php");
 
-function insertQuery($query,$connection){
+function executeQuery($query,$connection){
 
     if (mysqli_query($connection,$query)) {
         
@@ -72,7 +72,7 @@ function registreUser($fullName,$username,$password,$connection)
 {
     $query = "INSERT INTO author(fullname,login,password) VALUES('".$fullName."','".$username."','".$password."')";
 
-    return insertQuery($query,$connection);
+    return executeQuery($query,$connection);
 }
 
 // select all categories
@@ -85,13 +85,34 @@ function getAllCategories($connection)
 
 }
 
+//add a new category
+function addCategory($connection,$category_name){
+    $query = "INSERT INTO category(name) VALUES('".$category_name."')";
+
+    return executeQuery($query,$connection);
+}
+
+//delete a category
+function deleteCategory($connection,$id){
+    $query = "DELETE FROM category WHERE id = $id";
+
+    return executeQuery($query,$connection);
+}
+
+//update a category
+function updateCategory($connection,$id,$category_name){
+    $query = "UPDATE category set name = '".$category_name."' WHERE  id = $id";
+    return executeQuery($query,$connection);
+}
+
+
 // insert A question
 
 function addQuestion($content,$author_id,$category_id,$connection)
 {
     $query = "INSERT INTO question(content,id_category,id_author) VALUES('".$content."','".$category_id."','".$author_id."')";
 
-    return insertQuery($query,$connection);
+    return executeQuery($query,$connection);
 }
 
 // select all questions 
