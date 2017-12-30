@@ -61,8 +61,29 @@ function registreUser($fullName,$username,$password,$connection)
 function getAllCategories($connection)
 {
     
-    $sql = "SELECT * FROM category";  
+    $query = "SELECT * FROM category";  
     
-    return selectQuery($sql,$connection);
+    return selectQuery($query,$connection);
+
+}
+
+// insert A question
+
+function addQuestion($content,$author_id,$category_id,$connection)
+{
+    $query = "INSERT INTO question(content,id_category,id_author) VALUES('".$content."','".$category_id."','".$author_id."')";
+
+    return insertQuery($query,$connection);
+}
+
+// select all questions 
+
+function selectAllQuestions($connection)
+{
+    $query = "SELECT q.content as question, a.login as username,c.name as category FROM question q 
+                JOIN author a on q.id_author = a.id 
+                JOIN category c on q.id_category = c.id";
+
+    return selectQuery($query,$connection);
 
 }
