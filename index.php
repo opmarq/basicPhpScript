@@ -8,6 +8,13 @@
         header('location: http://localhost/phpscript/login.php');
     }
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        $question = $_POST['question'];
+        $category = $_POST['category'];
+
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +42,7 @@
                 ?>
             </div>
             <div class="col-md-9">
-                <form method="post" action="/phpscript/public/Home/index" >
+                <form method="post" action="" >
                     <div class="question-post">
                             <textarea name="question" placeholder="What is the best way to learn C?"></textarea>
                             <div class="question-action">
@@ -44,7 +51,11 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
                                             <select style="width:200px;" class="form-control" name="category">
-                                                      <option value="">ِComputer Science</option>
+                                                    
+                                                <?php foreach (getAllCategories($conn) as $key => $value): ?>
+                                                    <option value="<?= $value->id ?>">ِ<?= $value->name; ?></option>
+                                                <?php endforeach; ?>
+
                                             </select>
                                         </div>
                                     </div>
