@@ -20,6 +20,17 @@
        }
     }
 
+    $questions = null;
+
+    if(isset($_GET['cat']))
+    {
+        $questions = getQuestionByCategory($_GET['cat'],$conn);
+
+    }else{
+
+        $questions = selectAllQuestions($conn);
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +82,7 @@
                             </div>
                     </div>
                 </form>
-                <?php foreach (selectAllQuestions($conn) as $value):?>
+                <?php foreach ($questions as $value):?>
                     <div class="question-section">
                         <h4> <a href="single.php?id=<?= $value->id ?>"> <?= $value->question ?>? </a></h4>
                         <span class="question-info" >Question added by <a href="#" ><?= $value->username ?></a> in <a href="#" > <?= $value->category ?> </a></span>

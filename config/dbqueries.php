@@ -127,6 +127,17 @@ function selectAllQuestions($connection)
 
 }
 
+// get Questions by category
+
+function getQuestionByCategory($cat_id,$connection)
+{
+    $query = "SELECT q.id as id, q.content as question, a.login as username,c.name as category FROM question q 
+    JOIN author a on q.id_author = a.id 
+    JOIN category c on q.id_category = c.id WHERE c.id = '". $cat_id."'";
+
+    return selectQuery($query,$connection);
+}
+
 // get selected question 
 function getQuestion($id,$connection)
 {
@@ -142,7 +153,7 @@ function addAnswer($content,$question_id,$author_id,$connection)
 {
     $query = "INSERT INTO answer(content,id_question,id_author) VALUES('".$content."','".$question_id."','".$author_id."')";
 
-    return insertQuery($query,$connection);
+    return executeQuery($query,$connection);
 }
 
 // select answers of a question 

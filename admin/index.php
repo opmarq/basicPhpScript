@@ -48,11 +48,6 @@
         require_once("../template/category-modal.view.php");
     ?>
 
-
-
-
-
-      
     <div class="container">
 
       <div class="row">
@@ -87,13 +82,7 @@
         </div>
       </div>
     </div>  
-
-
-
-
-
-
-
+    
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/admin-index.js"></script>
