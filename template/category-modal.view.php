@@ -42,4 +42,25 @@
         </div>
       </div>
     </div>
+
+
+    <!-- Backup Confirmation Modal  -->
+    <div id="backupConfirmationModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Backup Files</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-inline" action="index.php" method="post">
+                <p>Are You Sure ?</p>              
+                <input type="submit" name="doBackupBtn" value="Yes" class="btn btn-success">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     
