@@ -63,13 +63,14 @@
       <div class="row">
         <div class="col-lg-10 col-lg-push-1 pt-4">
             <h2>Categories</h2>
+            <hr>
             <div class="table-responsive">
-              <table class="table table-striped">
+              <table class="table table-hover">
                 <thead>
-                  <tr>
+                  <tr class="active">
                     <th>#</th>
                     <th>Name</th>
-                    <th><a class="pull-right" href="#" data-toggle="modal" data-target="#addCategoryModal"><i class="glyphicon glyphicon-plus"></i></a></th>
+                    <th><a class="pull-right" href="#" data-toggle="modal" data-target="#addCategoryModal"><i data-toggle="tooltip" title="Add Category" class="glyphicon glyphicon-plus"></i></a></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -79,8 +80,8 @@
                       <td><?= $value->id ?></td>
                       <td><?= $value->name ?></td>
                       <td class="text-right">
-                        <a class="update-category-btn" data-toggle="modal" data-target="#updateCategoryModal" data-category="<?= $value->id.':'.$value->name ?>"><span class="glyphicon glyphicon-pencil text-success"></span></a>
-                        <a href="index.php?category_deleted_id=<?= $value->id ?>"><span class="glyphicon glyphicon-trash text-danger"></span></a>
+                        <a class="update-category-btn" data-toggle="modal" data-target="#updateCategoryModal" data-category="<?= $value->id.':'.$value->name ?>"><span data-toggle="tooltip" title="Update Category" class="glyphicon glyphicon-pencil text-success"></span></a>
+                        <a href="index.php?category_deleted_id=<?= $value->id ?>"><span data-toggle="tooltip" title="Delete Category" class="glyphicon glyphicon-trash text-danger"></span></a>
                       </td>
                     </tr>
                 <?php endforeach; ?>
