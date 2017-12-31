@@ -8,6 +8,22 @@
         header('location: http://localhost/phpscript/login.php');
     }
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        $question = $_POST['question'];
+        $category = $_POST['category'];
+        $user_id = $_SESSION['user']->id;
+
+       if(addQuestion($question,$user_id,$category,$conn))
+       {
+        header('location: http://localhost/phpscript');
+       }
+    }
+
+    $questions = getUserQuestions($_SESSION['user']->id,$conn);
+
+   // var_dump($questions);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,33 +48,41 @@
             <div class="col-md-3">
                 <div class="profile-section">
                     <img src="http://via.placeholder.com/300x300" alt="">
-                    <h4>Chajia Omar</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <h4><?= $_SESSION['user']->fullname; ?></h4>
+                    <p><?= $_SESSION['user']->bio; ?></p>
                 </div>
             </div>
             <div class="col-md-9">
-                <form>
+                <form method="post" action="" >
                     <div class="question-post">
-                            <textarea name="question" required placeholder="What is the best way to learn C?"></textarea>
-                            <div class="question-action">
-                                <div class="row">
-                                    <div class="col-xs-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
-                                            <input required style="width:200px;" type="text" class="form-control" name="category">                                            
-                                        </div>
+                        <textarea name="question" placeholder="What is the best way to learn C?"></textarea>
+                        <div class="question-action">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                                        <select style="width:200px;" class="form-control" name="category">
+                                                
+                                            <?php foreach (getAllCategories($conn) as $key => $value): ?>
+                                                <option value="<?= $value->id ?>">ِ<?= $value->name; ?></option>
+                                            <?php endforeach; ?>
+
+                                        </select>
                                     </div>
-                                    <div class="col-xs-4">
-                                        <input type="submit" value="Add Question" class="btn btn-danger">
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="submit" value="Add Question" class="btn btn-danger">
                                     </div>
                                 </div>
                             </div>
                     </div>
                 </form>
-                <div class="question-section">
-                    <h4> <a href="single">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, unde.</a></h4>
-                    <span class="question-info" >Question added by <a href="#" >opmarq</a> in <a href="#" >computer science</a></span>
-                </div> 
+                <?php foreach ($questions as $value): ?>
+                    <div class="question-section">
+                        <h4> <a href="single.php?id=<?= $value->id ?>"><?= $value->question ?></a></h4>
+                        <span class="question-info" >Question added by <a href="#" ><?= $value->username ?></a> in <a href="#" ><?= $value->category ?></a></span>
+                    </div> 
+                <?php endforeach; ?>
             </div>
         </div>
 
