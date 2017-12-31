@@ -8,6 +8,19 @@
         header('location: http://localhost/phpscript/login.php');
     }
 
+    $questionID = $_GET['id'];
+
+    if($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        addAnswer($_POST['answer'],$questionID,$_SESSION['user']->id,$conn);
+
+        header('location: http://localhost/phpscript/single.php?id='.$questionID);
+    }
+
+    $selectedQuestion = getQuestion($questionID,$conn)[0];
+
+    //var_dump(getAnswersOf($questionID,$conn));
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,25 +49,28 @@
             </div>
             <div class="col-md-9">
                 <div class="question-section">
-                    <h4>What is the best course to learn Frensh?</h4>
-                    <span class="question-info" >Question added by <a href="#" >Omar Chajia</a> in <a href="#" >Computer Science</a></span>
+                    <h4><?= $selectedQuestion->question ?>?</h4>
+                    <span class="question-info" >Question added by <a href="#" ><?= $selectedQuestion->username ?></a> in <a href="#"> <?= $selectedQuestion->category ?> </a></span>
                 </div>
-                <form>
+                <form method="POST" action="">
                     <div class="question-post">
-                            <textarea name="question" placeholder="You should ..."></textarea>
+                            <textarea name="answer" placeholder="You should ..."></textarea>
                             <div class="question-action">
                                 <input type="submit" value="Post Answer" class="btn btn-danger">
                             </div>
                     </div>
                 </form>
-                <div class="answer-section">
-                    <div class="autor-info">
-                        <img class="profile-img" src="http://via.placeholder.com/100x100" alt="">
-                        <span class="author-name" >Chajia Omar</span>
+                <?php  foreach (getAnswersOf($questionID,$conn) as $value):?>
+                    <div class="answer-section">
+                        <div class="autor-info">
+                            <img class="profile-img" src="http://via.placeholder.com/100x100" alt="">
+                            <span class="author-name" ><?= $value->login ?></span>
+                        </div>
+                    <p><?= $value->content ?></p>
                     </div>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo ullam ut corrupti reiciendis soluta labore eligendi esse eum numquam aliquam!
-                </div>
+                <?php endforeach; ?>
             </div>
+
         </div>
 
     </div>  
