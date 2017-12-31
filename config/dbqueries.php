@@ -167,3 +167,14 @@ function getAnswersOf($question_id,$connection)
 
     return selectQuery($query,$connection);
 }
+
+// selecting questions of the specified user
+
+function getUserQuestions($user_id,$connection)
+{
+    $query = "SELECT q.id as id, q.content as question, a.login as username,c.name as category FROM question q 
+    JOIN author a on q.id_author = a.id 
+    JOIN category c on q.id_category = c.id WHERE a.id = '".$user_id."'";
+
+    return selectQuery($query,$connection);
+}
