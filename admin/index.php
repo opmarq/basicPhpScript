@@ -3,6 +3,7 @@
 
     require_once("../config/init.php");
     require_once("../config/dbqueries.php");
+    require_once("../config/backup.php");
 
     if(!isset($_SESSION['admin']))
     {
@@ -27,6 +28,15 @@
         updateCategory($conn,$_POST['id_category'],$_POST['new_category_name']);
     }
 
+
+    
+
+    //doing the backup
+    if(isset($_POST['doBackupBtn'])){
+      //shell_exec("winrar a -afzip phpscriptBackup.zip .");
+      // Start the backup!
+      zipData('../../phpscript', '../phpscriptBackup.zip');
+    }
 
 ?>
 <!DOCTYPE html>
