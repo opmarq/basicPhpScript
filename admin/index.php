@@ -74,7 +74,7 @@
                       <td><?= $value->id ?></td>
                       <td><?= $value->name ?></td>
                       <td class="text-right">
-                        <a class="update-category-bnn" data-toggle="modal" data-target="#updateCategoryModal" data-category=<?= $value->id.':'.$value->name ?>><span class="glyphicon glyphicon-pencil text-success"></span></a>
+                        <a class="update-category-btn" data-toggle="modal" data-target="#updateCategoryModal" data-category="<?= $value->id.':'.$value->name ?>"><span class="glyphicon glyphicon-pencil text-success"></span></a>
                         <a href="index.php?category_deleted_id=<?= $value->id ?>"><span class="glyphicon glyphicon-trash text-danger"></span></a>
                       </td>
                     </tr>

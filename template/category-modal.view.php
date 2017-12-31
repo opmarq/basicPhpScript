@@ -20,7 +20,7 @@
       </div>
     </div>
 
-        <!-- Update Category Modal  -->
+    <!-- Update Category Modal  -->
     <div id="updateCategoryModal" class="modal fade" role="dialog">
       <div class="modal-dialog modal-md">
         <!-- Modal content-->

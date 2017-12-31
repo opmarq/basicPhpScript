@@ -91,3 +91,7 @@ h4 a:hover{
 .btn-logout{
     margin-top: 10%;
 }
+
+.update-category-btn{
+    cursor: pointer;
+}

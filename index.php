@@ -14,7 +14,7 @@
         $category = $_POST['category'];
         $user_id = $_SESSION['user']->id;
 
-       if(addQuestion($question,$category,$user_id,$conn))
+       if(addQuestion($question,$user_id,$category,$conn))
        {
         header('location: http://localhost/phpscript');
        }

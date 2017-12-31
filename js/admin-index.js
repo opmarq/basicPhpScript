@@ -1,4 +1,4 @@
-var updatebuttons = document.querySelectorAll(".update-category-bnn");
+var updatebuttons = document.querySelectorAll(".update-category-btn");
 
 updatebuttons.forEach(btn => btn.addEventListener("click",function(){
     //getting the old category data
