@@ -9,7 +9,7 @@
                 </ul>
                 
                 <div class="pull-right">
-                    <a href="profile.php"><img class="profile-img" src="http://via.placeholder.com/100x100" alt=""></a>
+                    <a href="profile.php"><img class="profile-img" src="uploads/<?= $_SESSION['user']->avatar ?>" alt=""></a>
                 </div>
                 
             </div>

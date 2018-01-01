@@ -63,7 +63,7 @@
                 <?php  foreach (getAnswersOf($questionID,$conn) as $value):?>
                     <div class="answer-section">
                         <div class="autor-info">
-                            <img class="profile-img" src="http://via.placeholder.com/100x100" alt="">
+                            <img class="profile-img" src="uploads/<?= $_SESSION['user']->avatar ?>" alt="">
                             <span class="author-name" ><?= $value->login ?></span>
                         </div>
                     <p><?= $value->content ?></p>

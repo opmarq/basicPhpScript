@@ -24,6 +24,8 @@
 
         updateUserImage($_SESSION['user']->id,$file_name,$conn);
 
+        $_SESSION['user']->avatar = $file_name;
+
         header('location: http://localhost/phpscript/profile.php');
 
     } else {

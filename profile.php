@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="profile-section">
-                    <img src="http://via.placeholder.com/300x300" alt="">
+                    <img src="uploads/<?= $_SESSION['user']->avatar ?>" alt="">
                     <h4><?= $_SESSION['user']->fullname; ?></h4>
                     <p><?= $_SESSION['user']->bio; ?></p>
 
