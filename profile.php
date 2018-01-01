@@ -14,10 +14,10 @@
         $category = $_POST['category'];
         $user_id = $_SESSION['user']->id;
 
-       if(addQuestion($question,$user_id,$category,$conn))
-       {
-        header('location: http://localhost/phpscript');
-       }
+        if(addQuestion($question,$user_id,$category,$conn))
+        {
+            header('location: http://localhost/phpscript/profile.php');
+        }
     }
 
     $questions = getUserQuestions($_SESSION['user']->id,$conn);
@@ -50,6 +50,11 @@
                     <img src="http://via.placeholder.com/300x300" alt="">
                     <h4><?= $_SESSION['user']->fullname; ?></h4>
                     <p><?= $_SESSION['user']->bio; ?></p>
+
+                    <form method="post" action="upload.php" enctype="multipart/form-data">
+                        <input type="file" name="image" id="upimage">
+                        <input name="upload" type="submit" value="upload">
+                    </form>
                 </div>
             </div>
             <div class="col-md-9">

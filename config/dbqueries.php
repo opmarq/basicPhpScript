@@ -178,3 +178,12 @@ function getUserQuestions($user_id,$connection)
 
     return selectQuery($query,$connection);
 }
+
+function updateUserImage($user_id,$avatar,$connection)
+{
+
+    $query = "UPDATE author SET avatar = '".$avatar."' WHERE id = '".$user_id."'";
+
+    executeQuery($query,$connection);
+
+}
