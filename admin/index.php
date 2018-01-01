@@ -28,14 +28,11 @@
         updateCategory($conn,$_POST['id_category'],$_POST['new_category_name']);
     }
 
-
-    
-
     //doing the backup
     if(isset($_POST['doBackupBtn'])){
       //shell_exec("winrar a -afzip phpscriptBackup.zip .");
       // Start the backup!
-      zipData('../../phpscript', '../phpscriptBackup.zip');
+      zipData('../../phpscript', '../backup/phpscriptBackup.zip');
     }
 
 ?>
