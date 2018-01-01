@@ -1,5 +1,5 @@
+//displaying data on the update modal once the update icon is clicked
 var updatebuttons = document.querySelectorAll(".update-category-btn");
-
 updatebuttons.forEach(btn => btn.addEventListener("click",function(){
     //getting the old category data
     console.log(this.dataset.category);
@@ -12,3 +12,13 @@ updatebuttons.forEach(btn => btn.addEventListener("click",function(){
     nameInput.value = fields[1];
 }))
 
+//toggle the active class between navbar elements on the admin panel.
+var navlinks = document.querySelectorAll("ul.navbar-nav > li > a");
+console.log(navlinks);
+navlinks.forEach(link => link.addEventListener("click",function(){
+    //remoce active class from the other li
+    let activeLi = document.querySelector("li.active");
+    activeLi.removeAttribute("class");
+    //set the active class to the new clicked li 
+    this.parentNode.setAttribute("class","active");
+}))
