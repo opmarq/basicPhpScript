@@ -70,7 +70,7 @@ function checkAdminAuth($username,$password,$connection)
 
 function registreUser($fullName,$username,$password,$connection)
 {
-    $query = "INSERT INTO author(fullname,login,password) VALUES('".$fullName."','".$username."','".$password."')";
+    $query = "INSERT INTO author(fullname,avatar,login,password) VALUES('".$fullName."','profile.jpg','".$username."','".$password."')";
 
     return executeQuery($query,$connection);
 }
