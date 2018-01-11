@@ -7,23 +7,18 @@
 
     if(isset($_POST["username"]) && isset($_POST['password']))
     {
-        $username = $_POST['username'];
-        $password = $_POST["password"];
-        
+        $username = trim($_POST['username']);
+        $password =  trim($_POST["password"]);
+
         $userCheck = checkAuth($username,$password,$conn);
 
         if($userCheck)
         {
-
             $_SESSION['user'] = $userCheck;
-
             header('location: http://localhost/phpscript/');
         }else{
-        
             $_SESSION['error'] = true;
-
             header('location: http://localhost/phpscript/login.php');
-            
         }
     }
 

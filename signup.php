@@ -7,16 +7,14 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        $fullName = $_POST['fullname'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $fullName = trim($_POST['fullname']);
+        $username = trim($_POST['username']);
+        $password = md5( trim($_POST['password']));
 
         if(registreUser($fullName,$username,$password,$conn))
         {
             $userCheck = checkAuth($username,$password,$conn);
-                  
             $_SESSION['user'] = $userCheck;
-
             header('location: http://localhost/phpscript/');
         }
 
