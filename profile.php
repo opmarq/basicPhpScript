@@ -52,8 +52,9 @@
                     <p><?= $_SESSION['user']->bio; ?></p>
 
                     <form method="post" action="upload.php" enctype="multipart/form-data">
-                        <input type="file" name="image" id="upimage">
-                        <input name="upload" type="submit" value="upload">
+                        <input style="display:none" type="file" name="image" id="upimage">
+                        <a  class="btn btn-primary btn-block" id="browse">Browse...</a>
+                        <input class="btn btn-primary btn-block" name="Upload" type="submit" value="Upload">
                     </form>
                 </div>
             </div>
@@ -93,5 +94,6 @@
 
     </div>  
 
+<script src="js/script.js"></script>
 </body>
 </html>
