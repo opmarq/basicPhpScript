@@ -50,7 +50,7 @@
             <div class="col-md-9">
                 <div class="question-section">
                     <h4><?= $selectedQuestion->question ?>?</h4>
-                    <span class="question-info" >Question added by <a href="#" ><?= $selectedQuestion->username ?></a> in <a href="#"> <?= $selectedQuestion->category ?> </a></span>
+                    <span class="question-info" >Question added by <a href="#" ><?= htmlspecialchars($selectedQuestion->username) ?></a> in <a href="#"> <?= htmlspecialchars($selectedQuestion->category) ?> </a></span>
                 </div>
                 <form method="POST" action="">
                     <div class="question-post">
@@ -66,7 +66,7 @@
                             <img class="profile-img" src="uploads/<?= $_SESSION['user']->avatar ?>" alt="">
                             <span class="author-name" ><?= $value->login ?></span>
                         </div>
-                    <p><?= $value->content ?></p>
+                    <p><?= htmlspecialchars($value->content) ?></p>
                     </div>
                 <?php endforeach; ?>
             </div>

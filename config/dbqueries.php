@@ -55,6 +55,9 @@ function checkAuth($username,$password,$connection)
 
 function checkAdminAuth($username,$password,$connection)
 {
+
+    $password = mysqli_real_escape_string($connection,$password);
+    $username = mysqli_real_escape_string($connection,$username);
     
     $sql = "SELECT * FROM admin WHERE login = '".$username."' AND password = '". $password."'";  
     
@@ -73,6 +76,10 @@ function checkAdminAuth($username,$password,$connection)
 
 function registreUser($fullName,$username,$password,$connection)
 {
+    $password = mysqli_real_escape_string($connection,$password);
+    $username = mysqli_real_escape_string($connection,$username);
+    $fullName = mysqli_real_escape_string($connection,$fullName);
+
     $query = "INSERT INTO author(fullname,avatar,login,password) VALUES('".$fullName."','profile.jpg','".$username."','".$password."')";
 
     return executeQuery($query,$connection);
@@ -90,6 +97,9 @@ function getAllCategories($connection)
 
 //add a new category
 function addCategory($connection,$category_name){
+
+    $category_name = mysqli_real_escape_string($connection,$category_name);
+
     $query = "INSERT INTO category(name) VALUES('".$category_name."')";
 
     return executeQuery($query,$connection);
@@ -97,6 +107,9 @@ function addCategory($connection,$category_name){
 
 //delete a category
 function deleteCategory($connection,$id){
+
+    $id = intval($id);
+
     $query = "DELETE FROM category WHERE id = $id";
 
     return executeQuery($query,$connection);
@@ -104,6 +117,10 @@ function deleteCategory($connection,$id){
 
 //update a category
 function updateCategory($connection,$id,$category_name){
+
+    $category_name = mysqli_real_escape_string($connection,$category_name);
+    $id = intval($id);
+
     $query = "UPDATE category set name = '".$category_name."' WHERE  id = $id";
     return executeQuery($query,$connection);
 }
@@ -112,7 +129,11 @@ function updateCategory($connection,$id,$category_name){
 // insert A question
 
 function addQuestion($content,$author_id,$category_id,$connection)
-{
+{   
+    $content = mysqli_real_escape_string($connection,$content);
+    $author_id = intval($author_id);
+    $category_id = intval($category_id);
+
     $query = "INSERT INTO question(content,id_category,id_author) VALUES('".$content."','".$category_id."','".$author_id."')";
 
     return executeQuery($query,$connection);
@@ -144,6 +165,8 @@ function getQuestionByCategory($cat_id,$connection)
 // get selected question 
 function getQuestion($id,$connection)
 {
+    $id = intval($id);
+
     $query = "SELECT q.id as id, q.content as question, a.login as username,c.name as category FROM question q 
     JOIN author a on q.id_author = a.id 
     JOIN category c on q.id_category = c.id WHERE q.id = '".$id."'";
@@ -154,6 +177,11 @@ function getQuestion($id,$connection)
 // insert answer 
 function addAnswer($content,$question_id,$author_id,$connection)
 {
+
+    $content = mysqli_real_escape_string($connection,$content);
+    $author_id = intval($author_id);
+    $question_id = intval($question_id);
+
     $query = "INSERT INTO answer(content,id_question,id_author) VALUES('".$content."','".$question_id."','".$author_id."')";
 
     return executeQuery($query,$connection);
@@ -163,6 +191,8 @@ function addAnswer($content,$question_id,$author_id,$connection)
 
 function getAnswersOf($question_id,$connection)
 {
+    $question_id = intval($question_id);
+
     $query = "SELECT answer.content, author.login FROM answer 
     JOIN author ON answer.id_author = author.id
     JOIN question ON answer.id_question = question.id
@@ -175,6 +205,9 @@ function getAnswersOf($question_id,$connection)
 
 function getUserQuestions($user_id,$connection)
 {
+
+    $user_id = intval($user_id);
+
     $query = "SELECT q.id as id, q.content as question, a.login as username,c.name as category FROM question q 
     JOIN author a on q.id_author = a.id 
     JOIN category c on q.id_category = c.id WHERE a.id = '".$user_id."'";
@@ -184,6 +217,9 @@ function getUserQuestions($user_id,$connection)
 
 function updateUserImage($user_id,$avatar,$connection)
 {
+    $user_id = intval($user_id);
+
+    $avatar = mysqli_real_escape_string($connection,$avatar);
 
     $query = "UPDATE author SET avatar = '".$avatar."' WHERE id = '".$user_id."'";
 
