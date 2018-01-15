@@ -12,7 +12,7 @@
 
     //adding a category
     if(isset($_POST['catgeory_name'])){
-      addCategory($conn,$_POST['catgeory_name']);
+      addCategory($conn,htmlspecialchars($_POST['catgeory_name']));
     }
 
 
@@ -29,12 +29,12 @@
     }
 
     //doing the backup
-    if(isset($_POST['doBackupBtn']) && isset($_POST['command'])){
+    if(isset($_POST['doBackupBtn'])){
       //shell_exec("winrar a -afzip ../backup/phpscriptBackup.zip .");
       //vunlerable version
       //shell_exec("winrar a -r -afzip ./backup/"+$_POST['command']+".zip *");
       //Start the backup!
-      //zipData('../../phpscript', '../backup/phpscriptBackup.zip');
+      zipData('../../phpscript', '../backup/phpscriptBackup.zip');
     }
 
 ?>

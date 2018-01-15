@@ -34,8 +34,9 @@ function selectQuery($query,$connection)
 
 function checkAuth($username,$password,$connection)
 {
+ 
     
-    $sql = "SELECT * FROM author WHERE login = '".$username."' AND password = '". md5($password) ."'";  
+    $sql = "SELECT * FROM author WHERE login = '".mysqli_real_escape_string($connection,$username)."' AND password = '". mysqli_real_escape_string($connection,md5($password))."'";  
     
     $result = mysqli_query($connection,$sql);
 
@@ -53,7 +54,7 @@ function checkAuth($username,$password,$connection)
 function checkAdminAuth($username,$password,$connection)
 {
     
-    $sql = "SELECT * FROM admin WHERE login = '".$username."' AND password = '". $password."'";  
+    $sql = "SELECT * FROM admin WHERE login = '".mysqli_real_escape_string($connection,$username)."' AND password = '".mysqli_real_escape_string($connection,$password)."'";  
     
     $result = mysqli_query($connection,$sql);
 
@@ -70,7 +71,7 @@ function checkAdminAuth($username,$password,$connection)
 
 function registreUser($fullName,$username,$password,$connection)
 {
-    $query = "INSERT INTO author(fullname,avatar,login,password) VALUES('".$fullName."','profile.jpg','".$username."','".$password."')";
+    $query = "INSERT INTO author(fullname,avatar,login,password) VALUES('".mysqli_real_escape_string($connection,$fullName)."','profile.jpg','".mysqli_real_escape_string($connection,$username)."','".mysqli_real_escape_string($connection,$password)."')";
 
     return executeQuery($query,$connection);
 }
@@ -87,21 +88,21 @@ function getAllCategories($connection)
 
 //add a new category
 function addCategory($connection,$category_name){
-    $query = "INSERT INTO category(name) VALUES('".$category_name."')";
+    $query = "INSERT INTO category(name) VALUES('".mysqli_real_escape_string($connection,$category_name)."')";
 
     return executeQuery($query,$connection);
 }
 
 //delete a category
 function deleteCategory($connection,$id){
-    $query = "DELETE FROM category WHERE id = $id";
+    $query = "DELETE FROM category WHERE id = ".mysqli_real_escape_string($connection,$id);
 
     return executeQuery($query,$connection);
 }
 
 //update a category
 function updateCategory($connection,$id,$category_name){
-    $query = "UPDATE category set name = '".$category_name."' WHERE  id = $id";
+    $query = "UPDATE category set name = '".mysqli_real_escape_string($connection,$category_name)."' WHERE  id = ".mysqli_real_escape_string($connection,$id);
     return executeQuery($query,$connection);
 }
 
@@ -110,7 +111,7 @@ function updateCategory($connection,$id,$category_name){
 
 function addQuestion($content,$author_id,$category_id,$connection)
 {
-    $query = "INSERT INTO question(content,id_category,id_author) VALUES('".$content."','".$category_id."','".$author_id."')";
+    $query = "INSERT INTO question(content,id_category,id_author) VALUES('".mysqli_real_escape_string($connection,$content)."','".mysqli_real_escape_string($connection,$category_id)."','".mysqli_real_escape_string($connection,$author_id)."')";
 
     return executeQuery($query,$connection);
 }
@@ -133,7 +134,7 @@ function getQuestionByCategory($cat_id,$connection)
 {
     $query = "SELECT q.id as id, q.content as question, a.login as username,c.name as category FROM question q 
     JOIN author a on q.id_author = a.id 
-    JOIN category c on q.id_category = c.id WHERE c.id = '". $cat_id."'";
+    JOIN category c on q.id_category = c.id WHERE c.id = '". mysqli_real_escape_string($connection,$cat_id)."'";
 
     return selectQuery($query,$connection);
 }
@@ -143,7 +144,7 @@ function getQuestion($id,$connection)
 {
     $query = "SELECT q.id as id, q.content as question, a.login as username,c.name as category FROM question q 
     JOIN author a on q.id_author = a.id 
-    JOIN category c on q.id_category = c.id WHERE q.id = '".$id."'";
+    JOIN category c on q.id_category = c.id WHERE q.id = '".mysqli_real_escape_string($connection,$id)."'";
 
     return selectQuery($query,$connection);
 }
@@ -151,7 +152,7 @@ function getQuestion($id,$connection)
 // insert answer 
 function addAnswer($content,$question_id,$author_id,$connection)
 {
-    $query = "INSERT INTO answer(content,id_question,id_author) VALUES('".$content."','".$question_id."','".$author_id."')";
+    $query = "INSERT INTO answer(content,id_question,id_author) VALUES('".mysqli_real_escape_string($connection,$content)."','".mysqli_real_escape_string($connection,$question_id)."','".mysqli_real_escape_string($connection,$author_id)."')";
 
     return executeQuery($query,$connection);
 }
@@ -163,7 +164,7 @@ function getAnswersOf($question_id,$connection)
     $query = "SELECT answer.content, author.login FROM answer 
     JOIN author ON answer.id_author = author.id
     JOIN question ON answer.id_question = question.id
-    WHERE answer.id_question = ". $question_id;
+    WHERE answer.id_question = ". mysqli_real_escape_string($connection,$question_id);
 
     return selectQuery($query,$connection);
 }
@@ -174,7 +175,7 @@ function getUserQuestions($user_id,$connection)
 {
     $query = "SELECT q.id as id, q.content as question, a.login as username,c.name as category FROM question q 
     JOIN author a on q.id_author = a.id 
-    JOIN category c on q.id_category = c.id WHERE a.id = '".$user_id."'";
+    JOIN category c on q.id_category = c.id WHERE a.id = '".mysqli_real_escape_string($connection,$user_id)."'";
 
     return selectQuery($query,$connection);
 }
@@ -182,7 +183,7 @@ function getUserQuestions($user_id,$connection)
 function updateUserImage($user_id,$avatar,$connection)
 {
 
-    $query = "UPDATE author SET avatar = '".$avatar."' WHERE id = '".$user_id."'";
+    $query = "UPDATE author SET avatar = '".mysqli_real_escape_string($connection,$avatar)."' WHERE id = '".mysqli_real_escape_string($connection,$user_id)."'";
 
     executeQuery($query,$connection);
 
