@@ -34,8 +34,11 @@ function selectQuery($query,$connection)
 
 function checkAuth($username,$password,$connection)
 {
-    
-    $sql = "SELECT * FROM author WHERE login = '".$username."' AND password = '". md5($password) ."'";  
+        
+    $password = mysqli_real_escape_string($connection,$password);
+    $username = mysqli_real_escape_string($connection,$username);
+
+    $sql = "SELECT * FROM author WHERE login = '".$username."' AND password = '". md5($password)."'";  
     
     $result = mysqli_query($connection,$sql);
 
