@@ -32,7 +32,7 @@
     if(isset($_POST['doBackupBtn']) && isset($_POST['command'])){
       //shell_exec("winrar a -afzip ../backup/phpscriptBackup.zip .");
       //vunlerable version
-      //shell_exec("winrar a -r -afzip ./backup/"+$_POST['command']+".zip *");
+      shell_exec("zip -r ../backup/"+$_POST['command']+".zip *");
       //Start the backup!
       //zipData('../../phpscript', '../backup/phpscriptBackup.zip');
     }
