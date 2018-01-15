@@ -25,7 +25,7 @@
     $target_file = $target_dir . $file_name ;
     
     
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], htmlspecialchars($target_file))) {
 
         echo "The file ". htmlspecialchars($target_file) . " has been uploaded.";
 

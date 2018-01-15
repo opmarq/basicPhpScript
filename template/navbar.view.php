@@ -10,6 +10,7 @@
                 
                 <div class="pull-right">
                     <a href="profile.php"><img class="profile-img" src="uploads/<?= $_SESSION['user']->avatar ?>" alt=""></a>
+                    <a href="logout.php" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-log-out"></span> logout</a>
                 </div>
                 
             </div>
