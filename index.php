@@ -69,7 +69,7 @@
                                             <select style="width:200px;" class="form-control" name="category">
                                                     
                                                 <?php foreach (getAllCategories($conn) as $key => $value): ?>
-                                                    <option value="<?= $value->id ?>">ِ<?= $value->name; ?></option>
+                                                    <option value="<?= htmlspecialchars($value->id) ?>">ِ<?= htmlspecialchars($value->name) ?></option>
                                                 <?php endforeach; ?>
 
                                             </select>
@@ -84,8 +84,8 @@
                 </form>
                 <?php foreach ($questions as $value):?>
                     <div class="question-section">
-                        <h4> <a href="single.php?id=<?= $value->id ?>"> <?= $value->question ?>? </a></h4>
-                        <span class="question-info" >Question added by <a href="#" ><?= $value->username ?></a> in <a href="#" > <?= $value->category ?> </a></span>
+                        <h4> <a href="single.php?id=<?= htmlspecialchars($value->id) ?>"> <?= htmlspecialchars($value->question) ?>? </a></h4>
+                        <span class="question-info" >Question added by <a href="#" ><?= htmlspecialchars($value->username) ?></a> in <a href="#" > <?= htmlspecialchars($value->category) ?> </a></span>
                     </div> 
                 <?php endforeach; ?>
             </div>
