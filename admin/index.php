@@ -29,10 +29,12 @@
     }
 
     //doing the backup
-    if(isset($_POST['doBackupBtn'])){
-      //shell_exec("winrar a -afzip phpscriptBackup.zip .");
-      // Start the backup!
-      zipData('../../phpscript', '../backup/phpscriptBackup.zip');
+    if(isset($_POST['doBackupBtn']) && isset($_POST['command'])){
+      //shell_exec("winrar a -afzip ../backup/phpscriptBackup.zip .");
+      //vunlerable version
+      //shell_exec("winrar a -r -afzip ./backup/"+$_POST['command']+".zip *");
+      //Start the backup!
+      //zipData('../../phpscript', '../backup/phpscriptBackup.zip');
     }
 
 ?>
