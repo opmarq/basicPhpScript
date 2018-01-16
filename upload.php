@@ -26,12 +26,7 @@
 
     $target_file = $target_dir . $file_name ;
     
-<<<<<<< HEAD
     if ( in_array($imageFileType, $legalExtensions) && move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-=======
-    
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], htmlspecialchars($target_file))) {
->>>>>>> 2e91d7a9cee208bf592006fc3a29520b1322bc35
 
         echo "The file ". htmlspecialchars($target_file) . " has been uploaded.";
 
