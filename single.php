@@ -8,13 +8,21 @@
         header('location: http://localhost/phpscript/login.php');
     }
 
+    
+
     $questionID = $_GET['id'];
+    $whitelistOfIds = array();
+    foreach(selectAllQuestions($conn) as $key => $value ) :
+        array_push($whitelistOfIds,$value->id);
+    endforeach;
+    if(!in_array($questionID,  $whitelistOfIds)){
+        echo "error question with id of ".htmlspecialchars($questionID)."dosen't exist !";
+        exit;
+    }
 
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
-        addAnswer($_POST['answer'],$questionID,$_SESSION['user']->id,$conn);
-
-        header('location: http://localhost/phpscript/single.php?id='.$questionID);
+        addAnswer($_POST['answer'],$questionID,$_SESSION['user']->id,$conn);            
     }
 
     $selectedQuestion = getQuestion($questionID,$conn)[0];

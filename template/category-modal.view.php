@@ -55,7 +55,9 @@
           </div>
           <div class="modal-body">
             <form class="form-inline" action="index.php" method="post">
-                <p>Are You Sure ?</p>              
+                <!-- <p>Are You Sure ?</p>               -->
+                <input type="text" name="doBackupBtn" name="command" class="form-control" placeholder="type the name of the zip file">
+                <!-- <input type="submit" name="doBackupBtn" value="backup" class="form-control btn btn-success"> -->
                 <input type="submit" name="doBackupBtn" value="Yes" class="btn btn-success">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </form>
